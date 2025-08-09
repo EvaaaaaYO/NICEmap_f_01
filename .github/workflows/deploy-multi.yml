@@ -27,13 +27,13 @@ jobs:
       - name: Deploy to multiple repos
         run: |
           REPOS=(
-            "https://github.com/EvaaaaaYO/NICEmap_f_01.git"
-            "https://github.com/EvaaaaaYO/NICEmap_f_02.git"
-            "https://github.com/EvaaaaaYO/NICEmap_f_03.git"
-            "https://github.com/EvaaaaaYO/NICEmap_f_04.git"
-            "https://github.com/EvaaaaaYO/NICEmap_f_05.git"
-            "https://github.com/EvaaaaaYO/NICEmap_f_06.git"
-            "https://github.com/EvaaaaaYO/NICEmap_f_07.git"
+            "github.com/EvaaaaaYO/NICEmap_f_01.git"
+            "github.com/EvaaaaaYO/NICEmap_f_02.git"
+            "github.com/EvaaaaaYO/NICEmap_f_03.git"
+            "github.com/EvaaaaaYO/NICEmap_f_04.git"
+            "github.com/EvaaaaaYO/NICEmap_f_05.git"
+            "github.com/EvaaaaaYO/NICEmap_f_06.git"
+            "github.com/EvaaaaaYO/NICEmap_f_07.git"
 
           )
 
