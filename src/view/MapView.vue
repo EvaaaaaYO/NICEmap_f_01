@@ -337,14 +337,14 @@ watch(selectedCPs, debouncedRedraw)
 
 //變色 - 基於分類ID決定顏色，確保相同ID永遠有相同顏色
 function getColorByIndex(index) {
-  return `hsl(${index * 10},60%,80%)`
+  return `hsl(${index * 10},80%,80%)`
 }
 
 // 基於分類ID生成固定顏色
 function getColorByCatId(id) {
   // 使用分類ID的數字部分來生成固定的顏色
   const numericId = parseInt(id.toString().replace(/\D/g, '')) || 0
-  return `hsl(${numericId * 5 % 360},60%,80%)`
+  return `hsl(${numericId * 5 % 360},80%,80%)`
 }
 
 // 新增：處理多分類的顏色選擇函數

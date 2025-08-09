@@ -10,7 +10,7 @@ const routes=[
     component: MapView,
   },
   {
-    path: '/gogo_TryToREPO',
+    path: '/NICEmap_f_01',
     name: 'Home',
     component: MapView,
   }]
