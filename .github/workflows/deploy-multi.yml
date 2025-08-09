@@ -1,0 +1,65 @@
+name: Deploy to multiple repos
+
+on:
+  push:
+    branches:
+      - simple
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to multiple repos
+        run: |
+          REPOS=(
+            "github.com:EvaaaaaYO/NICEmap_f_01.git"
+            "github.com:EvaaaaaYO/NICEmap_f_02.git"
+            "github.com:EvaaaaaYO/NICEmap_f_03.git"
+            "github.com:EvaaaaaYO/NICEmap_f_04.git"
+            "github.com:EvaaaaaYO/NICEmap_f_05.git"
+            "github.com:EvaaaaaYO/NICEmap_f_06.git"
+            "github.com:EvaaaaaYO/NICEmap_f_07.git"
+          )
+
+          for repo in "${REPOS[@]}"; do
+            echo "🚀 Deploying to $repo"
+            git clone "https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@$repo" tmp-repo
+            cd tmp-repo
+
+            # 檢查 gh-pages 是否存在
+            if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
+              echo "✅ gh-pages 分支已存在"
+              git checkout gh-pages
+            else
+              echo "⚠️ gh-pages 分支不存在，建立並放入 dist"
+              git checkout --orphan gh-pages
+            fi
+
+            # 清空並複製 dist 檔案
+            rm -rf ./*
+            cp -r ../dist/* ./
+
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
+            git add .
+            git commit -m "Deploy via GitHub Actions" || echo "No changes"
+            git push origin gh-pages --force
+
+            cd ..
+            rm -rf tmp-repo
+          done
