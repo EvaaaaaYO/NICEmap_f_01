@@ -12,6 +12,16 @@ const routes=[
 
   const router=createRouter({
     history:createWebHashHistory(), // HTML5 模式路由，URL 會很漂亮
-    routes
-  })
+    routes,
+    scrollBehavior(to,from,savedp){
+      if(to.hash){
+        return{
+          el:to.hash,
+          behavior:'smooth'//平滑滾
+        };
+        
+      }
+      return savedp ||{top:0}; 
+    }
+  });
   export default router

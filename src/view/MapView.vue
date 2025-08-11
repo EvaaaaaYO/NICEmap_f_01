@@ -11,8 +11,9 @@
     <div class="bg">
       <div class=" explain">
         <div>
-          <a href="#select_btn" class="a_btn">跳過說明直接開始▼</a>
-
+          <!-- <a href="#select_btn" class="a_btn">跳過說明直接開始▼</a> -->
+<router-link :to="{hash:'#select_btn'}"class="a_btn">
+  跳過說明直接開始▼</router-link>
           <h3>
             操作說明
           </h3>
